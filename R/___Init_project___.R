@@ -67,7 +67,10 @@ package_list <-
     "patchwork",
     "biscale",
     "svglite",
-    "gridExtra"
+    "gridExtra",
+    "palettes",
+    "writexl",
+    "gt"
   )
 
 remotes::install_github(

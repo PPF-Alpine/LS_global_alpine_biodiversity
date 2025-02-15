@@ -87,14 +87,14 @@ checklists_elevations_filtered <- checklists_elevations |>
 
 RUtilpol::save_latest_file(
   object_to_save = gift_shapes_filtered,  # Pass the object directly
-  dir = file.path(data_storage_path, "subm_global_alpine_biodiversity/Data/Plants/"),  # Use file.path for paths
+  dir = file.path(data_storage_path, "subm_global_alpine_biodiversity/Data/Plants/"),  
   prefered_format = "rds",
   use_sha = TRUE
 )
 
 RUtilpol::save_latest_file(
   object_to_save = checklists_elevations_filtered,  # Pass the object directly
-  dir = file.path(data_storage_path, "subm_global_alpine_biodiversity/Data/Plants/"),  # Use file.path for paths
+  dir = file.path(data_storage_path, "subm_global_alpine_biodiversity/Data/Plants/"),  
   prefered_format = "rds",
   use_sha = TRUE
 )
