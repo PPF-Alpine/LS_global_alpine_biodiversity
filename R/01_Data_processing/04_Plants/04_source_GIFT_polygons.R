@@ -49,7 +49,7 @@ gift_shapes_df <- sf::st_as_sf(gift_shapes_df)
 # 2. Intersect with alpine biome and filter those which fall within AB -----
 #---------------------------------------------------------------------------#
 
-# load alpine biome Suzette
+# load alpine biome 
 alpine_biome <- sf::st_read(paste(data_storage_path,"subm_global_alpine_biodiversity/Data/Mountains/alpine_biome.shp", sep = "/"))|>
   rename(Mountain_range = Mntn_rn)|>
   rename(area_size = area_sz)|>

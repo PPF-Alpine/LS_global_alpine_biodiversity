@@ -18,7 +18,7 @@ source(here::here("R/00_Config_file.R"))
 # Load GIFT Area Size and treeline data  -----
 #----------------------------------------------------------#
 
-# ❗ area extent and treeline elevation of the alpine biome have been done in ArcGISPRO 
+# ❗ area extent and treeline elevation of the alpine biome have been calculated in ArcGISPRO 
 
 # load the area size of GIFT 
 area_size_GIFT <- readxl::read_excel(paste0(data_storage_path, "subm_global_alpine_biodiversity/Data/Plants/area_size_overlap_gift_ab.xlsx"))|>
