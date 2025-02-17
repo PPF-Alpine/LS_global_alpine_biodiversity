@@ -1,14 +1,25 @@
 
 
+# In this script I calculate the proportion of how much each alpine category contributes to mountain generalists
 
-# Load checklist of dataframes
-richness_sar <- RUtilpol::get_latest_file(
-  "richness_sar",
-  dir = file.path(data_storage_path, "Biodiversity_combined/Final_lists/richness_sar_results"),
-  verbose = TRUE
-)
+#----------------------------#
+#     Set up and load data
+#----------------------------#
+
+source(here::here("R/00_Config_file.R"))
 
 library(dplyr)
+library(purrr)
+library(tidyr)
+library(readxl)
+library(insight)
+
+# Load richness data 
+richness_sar <- get_latest_file(
+  "richness_sar",
+  dir = file.path(data_storage_path, "subm_global_alpine_biodiversity/Results/Data_results"),
+  verbose = TRUE
+)
 
 
 #--------------------------------------------------------
@@ -48,7 +59,7 @@ proportional_richness_results <- richness_sar|>
 RUtilpol::save_latest_file(
   object_to_save = proportional_richness_results,  
   file_name = "proportions_alp_categories",
-  dir = file.path(data_storage_path, "Biodiversity_combined/Final_lists/richness_sar_results"),  # Use file.path for paths
+  dir = file.path(data_storage_path, "subm_global_alpine_biodiversity/Results/Data_results"),  # Use file.path for paths
   prefered_format = "rds",
   use_sha = TRUE
 )

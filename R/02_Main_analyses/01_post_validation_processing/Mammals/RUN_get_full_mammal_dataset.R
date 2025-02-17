@@ -16,17 +16,17 @@ source(
 
 # STEP 1: compile all lists that have been returned by experts
 source(
-  here::here("R/02_Main_analyses/Biodiversity_combined/Post_expert_validation/Mammals/01_compile_returned_expertdata_mammals.R")
+  here::here("R/02_Main_analyses/01_post_expert_validation/Mammals/01_compile_returned_expertdata_mammals.R")
 )
 
 # STEP 2: Clean all lists that have been returned
 source(
-  here::here("R/02_Main_analyses/Biodiversity_combined/Post_expert_validation/Mammals/02_clean_returned_expertdata_mammals.R")
+  here::here("R/02_Main_analyses/01_post_expert_validation/Mammals/Mammals/02_clean_returned_expertdata_mammals.R")
 )
 
 # STEP 3: Source all lists for mountain ranges that have not been validated
 source(
-  here::here("R/02_Main_analyses/Biodiversity_combined/Post_expert_validation/Mammals/03_combine_val_nonval_data.R")
+  here::here("R/02_Main_analyses/01_post_expert_validation/Mammals/Mammals/03_combine_val_nonval_data.R")
 )
 
 mammals_dfs <- ls(pattern = "^Mammals")
@@ -41,6 +41,6 @@ na_check_treeline <- combined_mammals |>
   filter(is.na(mean_treeline))
 
 # save the removed species data frame
-output_path <- paste0(data_storage_path, "/Biodiversity_combined/Final_lists/alpine_mammal_database.xlsx")
+output_path <- paste0(data_storage_path, "subm_global_alpine_biodiversity/Data/Mammals/alpine_mammal_database.xlsx")
 
 writexl::write_xlsx(combined_mammals, output_path)

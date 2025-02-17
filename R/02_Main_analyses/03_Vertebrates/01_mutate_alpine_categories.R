@@ -14,7 +14,7 @@ library(tidyverse)
 library(RUtilpol)
 
 checklist <- get_latest_file("alpine_vertebrate_dataset", 
-                dir = file.path(data_storage_path, "Biodiversity_combined/Final_lists"), 
+                dir = file.path(data_storage_path, "subm_global_alpine_biodiversity/Data/all_vertebrates"), 
                 verbose = TRUE)
 
 
@@ -23,11 +23,10 @@ checklist <- get_latest_file("alpine_vertebrate_dataset",
 #----------------------------#
 
 # Join with treeline elevations
-Treeline_Elevations <- readxl::read_excel("Data/Input/mountain_data/Treeline_Lapse_Rate_04_05.xlsx")
+Treeline_Elevations <- readxl::read_excel(file.path(data_storage_path, "subm_global_alpine_biodiversity/Data/Mountains/Treeline_Lapse_Rate_04_05.xlsx"))
 
 # load the table with the area size of each mountain range
-area_size <- readxl::read_excel("Data/Input/mountain_data/Alpine_Biome_Area_size.xlsx")|>
-  #readxl::read_excel(paste0(data_storage_path, "Mountains/Suzette_Alpine_biome/Alpine_Biome_Area_size.xlsx")) |>
+area_size <- readxl::read_excel(file.path(data_storage_path, "subm_global_alpine_biodiversity/Data/Mountains/Alpine_Biome_Area_size.xlsx"))|>
   select(Mountain_range,area_size)|>
   mutate(log1p_area=log1p(area_size))
 
@@ -57,14 +56,14 @@ filter_conditions <- list(
   degree_6 = "max_elevation >= mean_treeline & min_elevation >= Mean_elevation_6_degree"
 )
 
-# Use purrr::imap to create a list of dataframes based on filter conditions
+# list with all alpine categories 
 alpine_categories_list <- imap(filter_conditions, 
                           function(condition, name) {
                           alpine_categories |>
                           filter(!!rlang::parse_expr(condition))
 })
 
-# Now, the resulting alpine_dataframes list will contain your filtered dataframes:
+# alpine_dataframes 
 mountain_generalists <- alpine_categories_list$generalists
 alpine_specialists <- alpine_categories_list$specialists
 UFL_alpine_2_degr <- alpine_categories_list$degree_2
@@ -78,7 +77,7 @@ broad_mont_alp_6_degr <- alpine_categories_list$degree_6
 # save the list of df
 RUtilpol::save_latest_file(
   object_to_save = alpine_categories_list,  # Pass the object directly
-  dir = file.path(data_storage_path, "Biodiversity_combined/Final_lists/Alpine_categories"),  # Use file.path for paths
+  dir = file.path(data_storage_path, "subm_global_alpine_biodiversity/Data/all_vertebrates"),  # Use file.path for paths
   prefered_format = "rds",
   use_sha = TRUE
 )
@@ -86,35 +85,35 @@ RUtilpol::save_latest_file(
 # save the individual dataframes
 RUtilpol::save_latest_file(
   object_to_save = mountain_generalists,  # Pass the object directly
-  dir = file.path(data_storage_path, "Biodiversity_combined/Final_lists/Alpine_categories"),  # Use file.path for paths
+  dir = file.path(data_storage_path, "subm_global_alpine_biodiversity/Data/all_vertebrates"),  # Use file.path for paths
   prefered_format = "rds",
   use_sha = TRUE
 )
 
 RUtilpol::save_latest_file(
   object_to_save = alpine_specialists,  # Pass the object directly
-  dir = file.path(data_storage_path, "Biodiversity_combined/Final_lists/Alpine_categories"),  # Use file.path for paths
+  dir = file.path(data_storage_path, "subm_global_alpine_biodiversity/Data/all_vertebrates"),  # Use file.path for paths
   prefered_format = "rds",
   use_sha = TRUE
 )
 
 RUtilpol::save_latest_file(
   object_to_save = UFL_alpine_2_degr,  # Pass the object directly
-  dir = file.path(data_storage_path, "Biodiversity_combined/Final_lists/Alpine_categories"),  # Use file.path for paths
+  dir = file.path(data_storage_path, "subm_global_alpine_biodiversity/Data/all_vertebrates"),  # Use file.path for paths
   prefered_format = "rds",
   use_sha = TRUE
 )
 
 RUtilpol::save_latest_file(
   object_to_save = mid_mont_alp_4_degr,  # Pass the object directly
-  dir = file.path(data_storage_path, "Biodiversity_combined/Final_lists/Alpine_categories"),  # Use file.path for paths
+  dir = file.path(data_storage_path, "subm_global_alpine_biodiversity/Data/all_vertebrates"),  # Use file.path for paths
   prefered_format = "rds",
   use_sha = TRUE
 )
 
 RUtilpol::save_latest_file(
   object_to_save = broad_mont_alp_6_degr,  # Pass the object directly
-  dir = file.path(data_storage_path, "Biodiversity_combined/Final_lists/Alpine_categories"),  # Use file.path for paths
+  dir = file.path(data_storage_path, "subm_global_alpine_biodiversity/Data/all_vertebrates"),  # Use file.path for paths
   prefered_format = "rds",
   use_sha = TRUE
 )

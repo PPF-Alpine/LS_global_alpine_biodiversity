@@ -15,13 +15,13 @@ library(RUtilpol)
 #--------------------------------------------------------------------------#
 
 # 
-mammals<- readxl::read_excel(paste0(data_storage_path, "/Biodiversity_combined/Final_lists/alpine_mammal_database.xlsx"))|>
+mammals<- readxl::read_excel(paste0(data_storage_path, "subm_global_alpine_biodiversity/Data/Mammals/alpine_mammal_database.xlsx"))|>
   mutate(group="mammals")
 
-birds<- readxl::read_excel(paste0(data_storage_path, "/Biodiversity_combined/Final_lists/alpine_bird_database.xlsx"))|>
+birds<- readxl::read_excel(paste0(data_storage_path, "subm_global_alpine_biodiversity/Data/Birds/alpine_bird_database.xlsx"))|>
   mutate(group="birds")
 
-reptiles<- readxl::read_excel(paste0(data_storage_path, "/Biodiversity_combined/Final_lists/alpine_reptile_database.xlsx"))|>
+reptiles<- readxl::read_excel(paste0(data_storage_path, "subm_global_alpine_biodiversity/Data/Reptiles/alpine_reptile_database.xlsx"))|>
   mutate(group="reptiles")
 
 #----------------------------#
@@ -31,7 +31,9 @@ reptiles<- readxl::read_excel(paste0(data_storage_path, "/Biodiversity_combined/
 alpine_vertebrate_dataset<-bind_rows(mammals,birds,reptiles)
 
 # Define exclusion lists
-excluded_mountain_systems <- c("East Siberian Mountains", "Svalbard", "North America Arctic Islands")
+excluded_mountain_systems <- c("East Siberian Mountains", 
+                               "Svalbard", 
+                               "North America Arctic Islands")
 excluded_mountain_ranges <- c(
   "Alaska-Yukon Ranges", 
   "Aldan Mountains", 
@@ -56,22 +58,24 @@ excluded_mountain_ranges <- c(
   "South China Mountains"
 )
 
-# Filter out undesired mountain systems and ranges in one step
+# Filter out mountain systems and ranges that are not considered in analyses
 alpine_vertebrate_dataset <- alpine_vertebrate_dataset|>
   filter(
     !(Mountain_system %in% excluded_mountain_systems),
     !(Mountain_range %in% excluded_mountain_ranges)
   )
 
-length(unique(alpine_vertebrate_dataset$sciname))
 
+# create and ID for mountain ranges to facilitate labelling later on
 alpine_vertebrate_dataset <- alpine_vertebrate_dataset |>
   mutate(
     mountain_range_ID = dense_rank(Mountain_range)  # Rank alphabetically
   )
 
 mountain_range_ID<-alpine_vertebrate_dataset|>
-  select(Mountain_system,Mountain_range,mountain_range_ID)|>
+  select(Mountain_system,
+         Mountain_range,
+         mountain_range_ID)|>
   distinct()
 #----------------------------#
 #    Save latest file
@@ -79,14 +83,14 @@ mountain_range_ID<-alpine_vertebrate_dataset|>
 
 RUtilpol::save_latest_file(
   object_to_save = alpine_vertebrate_dataset,  # Pass the object directly
-  dir = file.path(data_storage_path, "Biodiversity_combined/Final_lists"),  # Use file.path for paths
+  dir = file.path(data_storage_path, "subm_global_alpine_biodiversity/Processed"),  # Use file.path for paths
   prefered_format = "rds",
   use_sha = TRUE
 )
 
 RUtilpol::save_latest_file(
   object_to_save = mountain_range_ID,  # Pass the object directly
-  dir = file.path(data_storage_path, "Biodiversity_combined/Final_lists"),  # Use file.path for paths
+  dir = file.path(data_storage_path, "subm_global_alpine_biodiversity/Data/Mountains"),  # Use file.path for paths
   prefered_format = "rds",
   use_sha = TRUE
 )
