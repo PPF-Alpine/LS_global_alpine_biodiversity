@@ -70,7 +70,9 @@ package_list <-
     "gridExtra",
     "palettes",
     "writexl",
-    "gt"
+    "gt",
+    "janitor",
+    "plotly"
   )
 
 remotes::install_github(
