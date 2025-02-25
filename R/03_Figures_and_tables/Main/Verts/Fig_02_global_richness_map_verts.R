@@ -136,7 +136,7 @@ plot(named_colour_vector)
 # Create Map
 #--------------------------------------------------------
 # Create the map with the background shapes and the bivariate-colored bubbles
-x11()  # Optional, opens a new plotting window
+
 map_with_bubbles <- ggplot2::ggplot() +
   geom_sf(data = world, fill = "gray88", color = "gray88") + 
   # Plot the GMBA shapes as background

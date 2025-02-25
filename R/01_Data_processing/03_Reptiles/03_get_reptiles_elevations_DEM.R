@@ -23,10 +23,31 @@ source(here::here("R/00_Config_file.R"))
 # 2. Load species data and set API key  -----
 #----------------------------------------------------------#
 
+# These are the 6 groups
+
+# Rhynchocephalia           
+# amphisbaenian           
+# croc
+# lizard
+# snake
+# turtle
+
+# Define the group name
+group_name <- "lizard" # Replace this with the name of the group
+
 # Read the checklist that includes the elevation data
-Checklist_Elev <- readxl::read_xlsx(paste0(data_storage_path,"subm_global_alpine_biodiversity/Data/Mammals/processed/Checklist_Mammals_elevations_HMW.xlsx"))
+Checklist_Elev <- readxl::read_xlsx(paste0(data_storage_path,"subm_global_alpine_biodiversity/Data/Reptiles/processed/Reptiles_Checklist_Elevations.xlsx"))|>
+  filter(group==group_name)
 
 
+# Load the shapefiles 
+file_path <- paste0(data_storage_path, "subm_global_alpine_biodiversity/Data/Reptiles/GARD_2022/groups/", group_name, ".shp")
+
+# Load the shapefile
+reptile_shapes <- sf::st_read(file_path, options = "ENCODING=ISO-8859-1")|> 
+  dplyr::rename(sciname = binomial)
+
+# insert API elvatr package
 topo_key <-"" #insert you API key
 elevatr::set_opentopo_key(topo_key)
 
@@ -47,64 +68,69 @@ mountain_shapes <- make_shapes_valid(mountain_shapes)
 # 3. Load the species geometries (distribution ranges)  -----
 #------------------------------------------------------------#
 
-# Load the latest mammal file
-mammals_geom <- RUtilpol::get_latest_file(
-  file_name = "mammal_geometries",
-  dir = paste0(data_storage_path, "subm_global_alpine_biodiversity/Data/Mammals/processed/geom/"))
-
 # merge the geometries to the checklist
-Checklist_Elev_DEM_merge <- merge(Checklist_Elev, 
-                                  mammals_geom, by = c("sciname", "order"), all.x = TRUE)
-
+Checklist_Elev_DEM <- merge(Checklist_Elev, reptile_shapes, by = c("sciname"), all.x = TRUE)
 
 #------------------------------------------------------------------------#
-# 4. Get mammal elevational ranges with DEM -----
+# 4. Get reptile elevational ranges with DEM -----
 #-------------------------------------------------------------------------#
 
-# The files are large, I therefore process them in chunks
-
-#Checklist_Elev_DEM <- Checklist_Elev_DEM_merge[1:1000,]
-#Checklist_Elev_DEM <- Checklist_Elev_DEM_merge[1001:2000,]
-#Checklist_Elev_DEM <- Checklist_Elev_DEM_merge[2001:3000,]
-#Checklist_Elev_DEM <- Checklist_Elev_DEM_merge[3001:4000,]
-#Checklist_Elev_DEM <- Checklist_Elev_DEM_merge[4001:5000,]
-#Checklist_Elev_DEM <- Checklist_Elev_DEM_merge[5001:6000,]
-Checklist_Elev_DEM <- Checklist_Elev_DEM_merge[6001:7397,]
-
-Checklist_Elev_DEM <- Checklist_Elev_DEM |> 
-  rename(geometry = geom)|>
-  filter(Mountain_system != "East Siberian Mountains")
+# Filter group to process
+group <- Checklist_Elev_DEM |> 
+  filter(group == group_name)|>
+  distinct(sciname, Mountain_range, Mountain_system, .keep_all = TRUE)
 
 # Define the focus GMBA systems 
-Focus_GMBA_systems<-unique(Checklist_Elev_DEM$Mountain_system)
+Focus_GMBA_systems<-unique(group$Mountain_system)
 
 # Validate the shapes in the df to process
-Checklist_Elev_DEM<- validate_shapes_individually(Checklist_Elev_DEM)
+group<- validate_shapes_individually(group)
 
 # This is the old function from the mammal workflow --> new one has to be refined
-results_dem_df <- extract_elevational_ranges(Checklist_Elev_DEM, Focus_GMBA_systems)
+results_dem_df <- extract_elevational_ranges(group, Focus_GMBA_systems)
 
 
 # Bind the dataframes togeher
-results_dem_df_b <- Checklist_Elev_DEM|> 
+results_dem_df_b <- group|> 
   left_join(results_dem_df,by=c("sciname","Mountain_range","Mountain_system"))|>
   rename(max_elevation_validation = max_elevation)|>
   rename(min_elevation_validation = min_elevation)|>
   sf::st_as_sf(results_dem_df_b)|> 
   sf::st_set_geometry(NULL)
 
+#-------------------------------#
+# 5. Restructure Dataframes -----
+#--------------------------------#
+
+quantile_info <- results_dem_list$quantile_info
+results_dem_df <- results_dem_list$results
+
+results_dem_df <- test|> 
+  left_join(results_dem_df,by=c("sciname","Mountain_range","Mountain_system"))|>
+  select(-geometry)|>
+  rename(max_elevation_validation = max_elevation)|>
+  rename(min_elevation_validation = min_elevation)|>
+  left_join(quantile_info,by=c("sciname","Mountain_range"))
+
+
 #---------------------------#
 # 6. Save data -----
 #--------------------------#
 
-# 
-RUtilpol::save_latest_file(
-  object_to_save = results_dem_df_b,
-  file_name = "Mammals_Checklist_Elevations_DEM_6001_7397",
-  dir = paste0(data_storage_path, "subm_global_alpine_biodiversity/Data/Mammals/processed/DEM"),
-  prefered_format = "rds",
-  use_sha = TRUE) 
+# Define the dynamic file path
+file_path <- file.path(data_storage_path, 
+                       "subm_global_alpine_biodiversity/Data/Reptiles/processed/", 
+                       paste0("Reptiles_Checklist_Elevations_DEM_", group_name, ".xlsx"))
+
+# Save the file
+writexl::write_xlsx(results_dem_df_b, file_path)
 
 
-check_and_write_xlsx(results_dem_df_b, data_storage_path, "Mammals/Output/Checklist/Mammals_Checklist_Elevations_DEM_6001_7397.xlsx")
+
+
+
+
+
+
+
 

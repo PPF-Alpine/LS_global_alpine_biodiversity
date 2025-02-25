@@ -72,7 +72,8 @@ package_list <-
     "writexl",
     "gt",
     "janitor",
-    "plotly"
+    "plotly",
+    "visdat"
   )
 
 remotes::install_github(

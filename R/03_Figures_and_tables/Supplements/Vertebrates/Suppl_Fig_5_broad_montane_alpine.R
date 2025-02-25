@@ -1,3 +1,7 @@
+#----------------------------#
+#     Set up and load data
+#----------------------------#
+
 source(here::here("R/00_Config_file.R"))
 
 library(ggplot2)
@@ -8,22 +12,28 @@ library(rnaturalearth)
 library(rnaturalearthdata)
 
 
+
 proportional_richness_results <- RUtilpol::get_latest_file(
   "proportions_alp_categories",
-  dir = file.path(data_storage_path, "Biodiversity_combined/Final_lists/richness_sar_results"),
+  dir = file.path(data_storage_path, "subm_global_alpine_biodiversity/Results/Data_results"),
   verbose = TRUE
 )
 
 mountain_range_ID <- RUtilpol::get_latest_file(
   "mountain_range_ID",
-  dir = file.path(data_storage_path, "Biodiversity_combined/Final_lists"),
+  dir = file.path(data_storage_path, "subm_global_alpine_biodiversity/Data/Mountains"),
   verbose = TRUE
 )
 
-mountain_range_ID <- readxl::read_xlsx("C:/Users/losch5089/OneDrive - University of Bergen/Desktop/Manuscripts/Ch_1_Global_Alpine_Biodiversity/suppl_tables/mountain_info_table.xlsx")
+
+#----------------------------#
+# Join IDs and filter condition
+#----------------------------#
 
 proportional_richness_results <- proportional_richness_results|>
-  left_join(mountain_range_ID|>select(Mountain_range,mountain_range_ID),by="Mountain_range")|>
+  left_join(mountain_range_ID|>
+              select(Mountain_range,mountain_range_ID),
+            by="Mountain_range")|>
   filter(filter_condition== "degree_6")
 
 
@@ -35,19 +45,23 @@ mountain_range_ID<-proportional_richness_results|>
 # Eckert IV projection
 eckertIV <- "+proj=eck4 +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs"
 
+
+
 #--------------------------------------------------------
 # Load the shapes
 #--------------------------------------------------------
 
-alpine_biome <- sf::st_read(paste(data_storage_path, "Mountains/Suzette_Alpine_Biome/Alpine_Biome_Suzette.shp", sep = "/")) |>
+alpine_biome <- sf::st_read(paste(data_storage_path, "subm_global_alpine_biodiversity/Data/Mountains/alpine_biome.shp", 
+                                  sep = "/")) |>
   rename(Mountain_range = MapName) |>
   rename(area_size = Area) |>
   mutate(area_size = round(area_size, 0)) |>
   mutate(log_area = log(area_size)) |>
   filter(Mountain_range %in% unique(proportional_richness_results$Mountain_range)) |>
-  st_transform(crs = eckertIV)  # Transform to Eckert IV projection
+  st_transform(crs = eckertIV)  
 
 alpine_biome <- validate_shapes_individually(alpine_biome)
+
 
 # Calculate centroids in Eckert IV projection
 alpine_biome_centroids <- alpine_biome |>
@@ -158,12 +172,13 @@ map_with_bubbles
 
 
 # 
-pdf("~/Desktop/Datasets/Biodiversity_combined/Visuals/Visuals_Manuscript/Basemaps/Chloropleth/broad_montane_6_degr.pdf", width = 11, height = 6)
-
 # 
+output_file <- file.path(data_storage_path, 
+                         "subm_global_alpine_biodiversity/Results/Figures_and_tables/Suppl/Verts/broad_montane_6_degr.pdf")
+
+# Save the map to a PDF file
+pdf(output_file, width = 11, height = 6)
 print(map_with_bubbles)
-
-# 
 dev.off()
 
 

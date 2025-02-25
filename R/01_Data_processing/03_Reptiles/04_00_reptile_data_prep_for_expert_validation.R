@@ -1,26 +1,26 @@
 #-----------------------------------------------------------------------------------#
-#         Data Preparation to visualize and analayse Mammals above the treeline
+#         Data Preparation to visualize and analayse Reptiles above the treeline
 #------------------------------------------------------------------------------------#
 
 
 # Load the elevation data
-Data_mammals <- readxl::read_excel(paste0(data_storage_path, "Mammals/Output/Checklist/Checklist_Mammals_elevations_DEM_all_mountains.xlsx"))|>
-  rename(min_elevation = min_elevation_validation,
-         max_elevation = max_elevation_validation)
+Data_reptiles <- readxl::read_excel(paste0(data_storage_path, "subm_global_alpine_biodiversity/Data/Reptiles/processed//Reptiles_Checklist_Elevations_DEM.xlsx")) |>
+  rename(min_elevation = min_elevation_validation)|>
+  rename(max_elevation = max_elevation_validation)
 
 # check for duplicates
-duplicates <- Data_mammals|>
+duplicates <- Data_reptiles|>
   distinct(sciname, Mountain_range, Mountain_system, .keep_all = TRUE)
 
 # 
 #----------------------------------------------------------#
-# 2. Create Conditions which elevations are used for mammals ---
+# 2. Create Conditions which elevations are used for reptiles  ----
 #----------------------------------------------------------#
-# If species occurs in one mountain system and has min and max elevation (MDD) - USE
+# If species occurs in one mountain system and has min and max elevation (GARD) - USE
 # If species occurs in one mountain system and has only min OR max (GARD) - Use GARD and respective other DEM
 # If species occurs in > one mountain system OR has NO min and max (GARD) USE DEM
 
-Data_mammals <- Data_mammals |>
+Data_reptiles <- Data_reptiles |>
   # Add a column that counts the number of unique mountain systems per species
   group_by(sciname) |>
   mutate(unique_mountain_systems = n_distinct(Mountain_system)) |>
@@ -54,24 +54,25 @@ Data_mammals <- Data_mammals |>
     )
   ) |>
   # drop the temporary columns
-  select(-unique_mountain_systems)
+  select(-unique_mountain_systems)|>distinct()
 
 #-----------------------------------------------------------------------------------------------------------------------------#
 # 2. Mutate the treeline elevations and calculate how much min elevation is below the treeline 
 #------------------------------------------------------------------------------------------------------------------------------#
+
 Treeline_Elevations <- readxl::read_excel(file.path(data_storage_path, "subm_global_alpine_biodiversity/Data/Mountains/Treeline_Lapse_Rate_04_05.xlsx"))
 
 # Join with treeline elevations
-Data_mammals <- Data_mammals|>
-  left_join(Treeline_Elevations,by =c("Mountain_range","Mountain_system")) |> 
-  rename(Mean_elevation_treeline = Mean_elevation) |># calculate how many m of species min and max limit is above and below the treeline
+Data_reptiles <- Data_reptiles|>
+  left_join(Treeline_Elevations,by = c("Mountain_range","Mountain_system"))|>
+  rename(Mean_elevation_treeline = Mean_elevation) |># calculate how much of species min and max limit is above and below the treeline
   mutate(
     min_rel_treeline = min_elevation_USE - Mean_elevation_treeline,
     max_rel_treeline = max_elevation_USE - Mean_elevation_treeline
   )
 
 # The column to use now is min/max elevation USE
-species_richness_mammals <- Data_mammals |>
+species_richness_reptiles <- Data_reptiles |>
   group_by(Mountain_range) |>
   summarise(species_richness = n_distinct(sciname))
 
@@ -79,9 +80,12 @@ species_richness_mammals <- Data_mammals |>
 # 3. Mutate information about species endemism
 #---------------------------------------------------#
 
-Data_mammals <- Data_mammals |> 
+Data_reptiles <- Data_reptiles |> 
   group_by(sciname)|> 
   mutate(unique_mountain_range = n_distinct(Mountain_range))|>
   ungroup()|>
   mutate(endemic = if_else(unique_mountain_range==1, "YES","NO"))
+
+
+
 

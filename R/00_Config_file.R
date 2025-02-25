@@ -66,15 +66,14 @@ sapply(
 # 4. Authorise the user -----
 #----------------------------------------------------------#
 
+# specify here the data storage path
+
 auth_tibble <-
   tibble(
-    name = c("losch5089","lotta","lotschu", "sfl046", "Suzette"),
+    name = c("losch5089","lotta"),
     paths = c(
       "C:/Users/losch5089/OneDrive - University of Bergen/Desktop/Datasets/",
-      "C:/Users/lotta/OneDrive - University of Bergen/Desktop/Datasets/",
-      "/home/lotschu/data",
-      "C:/Users/sfl046/University of Bergen/University of Bergen/Lotta Schultz - Datasets/",
-      "S:/University of Bergen/Lotta Schultz - Datasets/"
+      "C:/Users/lotta/OneDrive - University of Bergen/Desktop/Datasets/"
     )
   )
 
