@@ -15,7 +15,7 @@ This repo follows a template structure for R projects developed by Ondrej Mottl 
 
 ## Data availability
 
-data to run code can be downloaded from Zenodo (LINK). Set your data storage path in the 00_Config_file to the folder.
+data to run code can be downloaded from figshare (LINK). Set your data storage path in the 00_Config_file to the folder.
 
 #### Raw data 
 
