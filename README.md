@@ -1,10 +1,10 @@
 # General info
 
-This repo contains all R code used to process and analyse data for the outputs of the article "Contrasting patterns of alpine biodiversity across mountains and taxa" (Schultz et. al, under review)
+This repo contains all R code used to process and analyse data for the outputs of the article "Contrasting patterns of alpine biodiversity across mountains and taxa" (Schultz et. al, under review). This work has been developed for the [Past, Present and Future of Alpine Biomes Worldwide (PPF) project](https://mountainsinmotion.w.uib.no/)! 🏔🌎
 
 ## Main structure of the Repo
 
-This repo follows a template structure for R projects developed by Ondrej Mottl (<https://ondrejmottl.github.io/>)
+This repo follows a template structure for R projects developed by [Ondrej Mottl](<https://ondrejmottl.github.io/>)
 
 -   R / 01_Data_processing: Folder for sourcing, restructuring and joining data to create the species checklists
 -   R / 02_Main_analyses: Folder where main (richness) analyses of the paper are done
@@ -15,10 +15,10 @@ This repo follows a template structure for R projects developed by Ondrej Mottl 
 
 ## Data availability
 
-data to run code can be downloaded from figshare (LINK). Set your data storage path in the 00_Config_file to the folder.
+Data to run code can be downloaded from [figshare](https://figshare.com/s/3d4dcca576f6a73668b8). Set your data storage path in the 00_Config_file to the downloaded data folder.
 
 #### Raw data 
-
+The raw data used for this project is not ours and therefore not included in the data folder. Raw data can be downloaded following the links below. 
 *mammal distribution data*: Mammal Diversity Database (MDD) Marsh et al., 2022; <https://onlinelibrary.wiley.com/doi/10.1111/jbi.14330>
 
 *mammal elevation data*: Handbook of Mammals of the World. (machine readable version): <https://github.com/jhpoelen/hmw>
@@ -61,7 +61,7 @@ GIFT checklist data includes species checklists for GIFT regions (geo_entity), e
 Contains all code to reproduce figures shown in the manuscript and the supplements
 
 ### Funding
-This research has been developed for the PPF-Alpine project and is funded by the Trond Mohn Stiftelse and University of Bergen
+This research has been developed for the PPF-Alpine project and is funded by the [Trond Mohn Stiftelse](https://mohnfoundation.no/) and University of Bergen, Norway. 
 
 
 ### Contact
