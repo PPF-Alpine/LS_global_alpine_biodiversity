@@ -42,7 +42,7 @@ The raw data used for this project is not ours and therefore not included in the
 
 *mammals, birds and reptiles*: Here, species distribution data is sourced. Then distribution ranges are overlapped with mountain ranges. Elevational ranges are sourced from the respective literature sources and approximated using DEM. Eventually, data is reshaped to prepare for manual expert validation process.
 
-*Plants*: All plant data is sourced from the GIFT database. See detailed tutorials on how to use GIFT in R here: <https://biogeomacro.github.io/GIFT/articles/GIFT.html> and here: <https://biogeomacro.github.io/GIFT/articles/GIFT_advanced_users.html> We first sourced GIFT regions that contain alpine area and then joined elevational data for the species in these regions.
+*Plants*: All plant data is sourced from the GIFT database. See detailed tutorials on how to use GIFT in R [here](<https://biogeomacro.github.io/GIFT/articles/GIFT.html>) and [here](<https://biogeomacro.github.io/GIFT/articles/GIFT_advanced_users.html>) We first sourced GIFT regions that contain alpine area and then joined elevational data for the species in these regions.
 
 GIFT checklist data includes species checklists for GIFT regions (geo_entity), elevational data and polygons that delineate GIFT regions
 
