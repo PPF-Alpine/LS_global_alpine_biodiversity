@@ -98,13 +98,5 @@ results_dem_df_b <- Checklist_Elev_DEM|>
 #--------------------------#
 
 # 
-RUtilpol::save_latest_file(
-  object_to_save = results_dem_df_b,
-  file_name = "Mammals_Checklist_Elevations_DEM_6001_7397",
-  dir = paste0(data_storage_path, "subm_global_alpine_biodiversity/Data/Mammals/processed/DEM"),
-  prefered_format = "rds",
-  use_sha = TRUE) 
-
-
-check_and_write_xlsx(results_dem_df_b, data_storage_path, "Mammals/Output/Checklist/Mammals_Checklist_Elevations_DEM_6001_7397.xlsx")
+saveRDS(results_dem_df_b, data_storage_path, "subm_global_alpine_biodiversity/Data/Mammals/processed/DEM/Mammals_Checklist_Elevations_DEM_6001_7397.rds")
 

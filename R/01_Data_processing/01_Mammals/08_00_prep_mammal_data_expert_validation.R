@@ -4,7 +4,7 @@
 
 
 # Load the elevation data
-Data_mammals <- readxl::read_excel(paste0(data_storage_path, "Mammals/Output/Checklist/Checklist_Mammals_elevations_DEM_all_mountains.xlsx"))|>
+Data_mammals <- readxl::read_excel(paste0(data_storage_path,"/subm_global_alpine_biodiversity/Data/Mammals/processed/DEM/Checklist_Mammals_elevations_DEM_all_mountains.rds"))|>
   rename(min_elevation = min_elevation_validation,
          max_elevation = max_elevation_validation)
 

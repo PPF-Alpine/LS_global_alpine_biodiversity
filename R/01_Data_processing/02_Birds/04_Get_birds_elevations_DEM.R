@@ -21,8 +21,8 @@ source(here::here("R/00_Config_file.R"))
 # 2. Load species data and set API key  -----
 #----------------------------------------------------------#
 
-# Read the checklist that includes the elevation data
-Checklist_Elev <- readxl::read_xlsx(paste0(data_storage_path,"subm_global_alpine_biodiversity/Data/Birds/processed/Birds_Elevations_Qu_J.xlsx"))
+# Read the checklist that includes the prelim elevation data
+Checklist_Elev <- readRDS(paste0(data_storage_path,"subm_global_alpine_biodiversity/Data/Birds/processed/Birds_Elevations_Qu_J.rds"))
 
 # load shapefile
 file_path <- paste0(paste0(data_storage_path,"subm_global_alpine_biodiversity/Data/Birds/BirdLife/birdlife_merge.shp"))
@@ -96,10 +96,26 @@ results_dem_df_b <- results_dem_df_b|>
 #--------------------------#
 
 # write the individual chunks
-writexl::write_xlsx(results_dem_df_b, data_storage_path, "subm_global_alpine_biodiversity/Data/Birds/processed/Birds_Checklist_Elevations_DEM_16001_19617.xlsx")
+# ❗ change the chunk names 
+saveRDS(results_dem_df_b,paste0(data_storage_path, "subm_global_alpine_biodiversity/Data/Birds/processed/DEM/Birds_Checklist_Elevations_DEM_16001_19617.rds"))
 
 
 
+#---------------------------#
+# 7. Compile data -----
+#--------------------------#
+
+# List all .rds files in the directory
+rds_files <- list.files(paste0(data_storage_path,"/subm_global_alpine_biodiversity/Data/Birds/processed/DEM"), pattern = "\\.rds$", full.names = TRUE)
+
+# Load all .rds files into a list of dataframes
+data_list <- lapply(rds_files, readRDS)
+
+# Combine all dataframes, handling missing columns
+combined_data <- bind_rows(data_list)
+
+# Save the combined dataframe as an .rds file
+saveRDS(combined_data, file = paste0(data_storage_path,"/subm_global_alpine_biodiversity/Data/Birds/processed/DEM/Birds_Checklist_Elevations_DEM.rds"))
 
 
 

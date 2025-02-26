@@ -26,7 +26,7 @@ source(
 HMW_elevations <- readxl::read_xlsx(paste0(data_storage_path,"subm_global_alpine_biodiversity/Data/Mammals/processed/HMW_cleaned.xlsx"))
 
 # The checklist
-file_path <- paste0(data_storage_path, "subm_global_alpine_biodiversity/Data/Mammals/processed/Checklist_Mammals.xlsx")
+file_path <- paste0(data_storage_path, "subm_global_alpine_biodiversity/Data/Mammals/processed/Mammals_prelim_checklist.xlsx")
 
 
 # bind sheets into one dataframe
