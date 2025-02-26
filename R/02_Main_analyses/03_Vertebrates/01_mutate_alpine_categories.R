@@ -14,7 +14,7 @@ library(tidyverse)
 library(RUtilpol)
 
 checklist <- get_latest_file("alpine_vertebrate_dataset", 
-                dir = file.path(data_storage_path, "subm_global_alpine_biodiversity/Data/all_vertebrates"), 
+                dir = file.path(data_storage_path, "subm_global_alpine_biodiversity/Processed"), 
                 verbose = TRUE)
 
 
@@ -77,7 +77,7 @@ broad_mont_alp_6_degr <- alpine_categories_list$degree_6
 # save the list of df
 RUtilpol::save_latest_file(
   object_to_save = alpine_categories_list,  # Pass the object directly
-  dir = file.path(data_storage_path, "subm_global_alpine_biodiversity/Data/all_vertebrates"),  # Use file.path for paths
+  dir = file.path(data_storage_path, "subm_global_alpine_biodiversity/Processed"),  # Use file.path for paths
   prefered_format = "rds",
   use_sha = TRUE
 )
@@ -85,35 +85,35 @@ RUtilpol::save_latest_file(
 # save the individual dataframes
 RUtilpol::save_latest_file(
   object_to_save = mountain_generalists,  # Pass the object directly
-  dir = file.path(data_storage_path, "subm_global_alpine_biodiversity/Data/all_vertebrates"),  # Use file.path for paths
+  dir = file.path(data_storage_path, "subm_global_alpine_biodiversity/Processed"),  # Use file.path for paths
   prefered_format = "rds",
   use_sha = TRUE
 )
 
 RUtilpol::save_latest_file(
   object_to_save = alpine_specialists,  # Pass the object directly
-  dir = file.path(data_storage_path, "subm_global_alpine_biodiversity/Data/all_vertebrates"),  # Use file.path for paths
+  dir = file.path(data_storage_path, "subm_global_alpine_biodiversity/Processed"),  # Use file.path for paths
   prefered_format = "rds",
   use_sha = TRUE
 )
 
 RUtilpol::save_latest_file(
   object_to_save = UFL_alpine_2_degr,  # Pass the object directly
-  dir = file.path(data_storage_path, "subm_global_alpine_biodiversity/Data/all_vertebrates"),  # Use file.path for paths
+  dir = file.path(data_storage_path, "subm_global_alpine_biodiversity/Processed"),  # Use file.path for paths
   prefered_format = "rds",
   use_sha = TRUE
 )
 
 RUtilpol::save_latest_file(
   object_to_save = mid_mont_alp_4_degr,  # Pass the object directly
-  dir = file.path(data_storage_path, "subm_global_alpine_biodiversity/Data/all_vertebrates"),  # Use file.path for paths
+  dir = file.path(data_storage_path, "subm_global_alpine_biodiversity/Processed"),  # Use file.path for paths
   prefered_format = "rds",
   use_sha = TRUE
 )
 
 RUtilpol::save_latest_file(
   object_to_save = broad_mont_alp_6_degr,  # Pass the object directly
-  dir = file.path(data_storage_path, "subm_global_alpine_biodiversity/Data/all_vertebrates"),  # Use file.path for paths
+  dir = file.path(data_storage_path, "subm_global_alpine_biodiversity/Processed"),  # Use file.path for paths
   prefered_format = "rds",
   use_sha = TRUE
 )

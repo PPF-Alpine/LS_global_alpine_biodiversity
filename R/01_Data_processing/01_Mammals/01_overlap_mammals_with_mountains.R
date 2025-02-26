@@ -140,7 +140,7 @@ RUtilpol::save_latest_file(
 #------------------------------------------#
 
 # Define the path to your Excel file
-file_path <- paste0(data_storage_path, "subm_global_alpine_biodiversity/Data/Mammals/processed/Mammals_Checklist.xlsx")
+file_path <- paste0(data_storage_path, "subm_global_alpine_biodiversity/Data/Mammals/processed/Mammals_prelim_checklist.xlsx")
 
 # function to write the data to an excel file: each order is written to a seperate sheet
 save_excel_sheet(file_path, order_name, mammals_checklist)

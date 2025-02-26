@@ -27,7 +27,7 @@ source(
 #----------------------------------------------------------#
 
 
-file_path <- paste0(data_storage_path, "subm_global_alpine_biodiversity/Data/Reptiles/processed/Reptiles_Checklist.xlsx")
+file_path <- paste0(data_storage_path, "subm_global_alpine_biodiversity/Data/Reptiles/processed/Reptiles_prelim_checklist.xlsx")
 
 # this binds the different sheets into one dataframe
 Reptile_Checklist <- readxl::excel_sheets(file_path) |>

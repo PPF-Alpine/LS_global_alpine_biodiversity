@@ -20,15 +20,16 @@ library(elevatr)
 #---------------------------#
 # Function to filter species #
 #---------------------------#
+
 filter_species_in_range <- function(Checklist_Elev_DEM, GMBA_range) {
-  Checklist_Elev_DEM |>
-    filter(!is.na(min_elevation) & !is.na(max_elevation)) |>
-    group_by(sciname) |>
-    mutate(num_systems = n_distinct(Mountain_system)) |>
-    filter(num_systems == 1) |>
-    select(-num_systems) |>
-    data.table::data.table() |>
-    .[Mountain_range == GMBA_range, .SD[1], by = sciname] |>
+  Checklist_Elev_DEM %>%
+    filter(!is.na(min_elevation) & !is.na(max_elevation)) %>%
+    group_by(sciname) %>%
+    mutate(num_systems = n_distinct(Mountain_system)) %>%
+    filter(num_systems == 1) %>%
+    select(-num_systems) %>%
+    data.table::data.table() %>%
+    .[Mountain_range == GMBA_range, .SD[1], by = sciname] %>%
     sf::st_as_sf()
 }
 

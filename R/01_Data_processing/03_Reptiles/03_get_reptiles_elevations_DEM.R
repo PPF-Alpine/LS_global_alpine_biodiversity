@@ -119,17 +119,28 @@ results_dem_df <- test|>
 
 # Define the dynamic file path
 file_path <- file.path(data_storage_path, 
-                       "subm_global_alpine_biodiversity/Data/Reptiles/processed/", 
-                       paste0("Reptiles_Checklist_Elevations_DEM_", group_name, ".xlsx"))
+                       "subm_global_alpine_biodiversity/Data/Reptiles/processed/DEM", 
+                       paste0("Reptiles_Checklist_Elevations_DEM_", group_name, ".rds"))
 
 # Save the file
-writexl::write_xlsx(results_dem_df_b, file_path)
+saveRDS(results_dem_df_b, file_path)
 
 
+#---------------------------#
+# 7. Compile data -----
+#--------------------------#
 
+# List all .rds files in the directory
+rds_files <- list.files(paste0(data_storage_path,"/subm_global_alpine_biodiversity/Data/Reptiles/processed/DEM"), pattern = "\\.rds$", full.names = TRUE)
 
+# Load all .rds files into a list of dataframes
+data_list <- lapply(rds_files, readRDS)
 
+# Combine all dataframes, handling missing columns
+combined_data <- bind_rows(data_list)
 
+# Save the combined dataframe as an .rds file
+saveRDS(combined_data, file = paste0(data_storage_path,"/subm_global_alpine_biodiversity/Data/Reptiles/processed/DEM/Reptiles_Checklist_Elevations_DEM.rds"))
 
 
 

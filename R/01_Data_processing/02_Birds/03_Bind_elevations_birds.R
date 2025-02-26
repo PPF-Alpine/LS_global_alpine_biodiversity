@@ -53,8 +53,7 @@ qu_j_elevations <- readxl::read_excel(paste0(data_storage_path,"subm_global_alpi
 #  save data -----
 #----------------------------------------------------------#
 
-writexl::write_xlsx(qu_j_elevations,data_storage_path, "subm_global_alpine_biodiversity/Data/Birds/processed/Birds_Elevations_Qu_J.xlsx")
-
+saveRDS(qu_j_elevations,paste0(data_storage_path, "subm_global_alpine_biodiversity/Data/Birds/processed/Birds_Checklist_Elevations_Qu_J.rds"))
 
 #----------------------------------------------------------#
 # check out data -----
@@ -89,7 +88,8 @@ Birds_Elevations <- Birds_Elevations |>
 
 
 
-writexl::write_xlsx(Birds_Elevations,data_storage_path, "subm_global_alpine_biodiversity/Data/Birds/processed/Birds_Checklist_Elevations_Qu_J.xlsx")
+saveRDS(Birds_Elevations,paste0(data_storage_path, "subm_global_alpine_biodiversity/Data/Birds/processed/Birds_Checklist_Elevations_Qu_J.rds"))
+
 
 #----------------------------------------------------------#
 # visualize missing data --

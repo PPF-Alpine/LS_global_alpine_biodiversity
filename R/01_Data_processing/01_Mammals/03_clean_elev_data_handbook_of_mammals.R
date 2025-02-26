@@ -42,7 +42,7 @@ url <- "https://raw.githubusercontent.com/jhpoelen/hmw/main/hmw.csv"
 hmw_data <- read.csv(url)
 
 # Load The checklist
-file_path <- paste0(data_storage_path, "subm_global_alpine_biodiversity/Data/Mammals/processed/Mammals_Checklist.xlsx")
+file_path <- paste0(data_storage_path, "subm_global_alpine_biodiversity/Data/Mammals/processed/Mammals_prelim_checklist.xlsx")
 
 
 # bind sheets into one dataframe
