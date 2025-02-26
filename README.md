@@ -4,8 +4,7 @@ This repo contains all R code used to process and analyse data for the outputs o
 
 ## Main structure of the Repo
 
-This repo follows a template structure for R projects developed by [Ondrej Mottl](<https://ondrejmottl.github.io/>)
-
+This repo follows a template structure for R projects developed by [Ondrej Mottl](<https://ondrejmottl.github.io/>) and [Suzette Flantua](<https://sflantua.github.io/>)
 -   R / 01_Data_processing: Folder for sourcing, restructuring and joining data to create the species checklists
 -   R / 02_Main_analyses: Folder where main (richness) analyses of the paper are done
 -   R / 03_Figures_and_tables: Folder where figures and tables for the paper are produced
@@ -48,11 +47,11 @@ GIFT checklist data includes species checklists for GIFT regions (geo_entity), e
 
 ### Main_analyses
 
-*post_validataion_processing*: compile files that have been validated by experts.
+*post_validation_processing*: compile files that have been validated by experts.
 
-*Plants*: Here, we categorize plants based on their elevational ranges relative to the upper forest line within each GIFT region as (alpine generalist, broad-montane species, mid-montane, UFL-alpine and alpine specialist). We then calculate absolute and relative richness for each GIFT region and the proportion of each category.
+*Plants*: Here, we categorize plants based on their elevational ranges relative to the upper forest line within each GIFT region as alpine generalist, broad-montane species, mid-montane, UFL-alpine and alpine specialist. We then calculate absolute and relative richness for each GIFT region and the proportion of each category.
 
-*Vertebrates*: Categorize mammals, birds and reptiles based on their elevational ranges relative the upper forest line within each mountain range as (alpine generalist, broad-montane species, mid-montane, UFL-alpine and alpine specialist). We then calculate absolute and relative richness for each mountain range and the proportion of each category
+*Vertebrates*: Categorize mammals, birds and reptiles based on their elevational ranges relative the upper forest line within each mountain range as alpine generalist, broad-montane species, mid-montane, UFL-alpine and alpine specialist. We then calculate absolute and relative richness for each mountain range and the proportion of each category
 
 *Mountains*: Here, we calculate the lapse rates for each mountain range and for each GIFT region as *lm(temperature \~ elevation)*. We then calculate how the temperature difference of x degree translate in elevation meteres in each mountain range and gift region as *Elevation Change = Delta Temp/Lapse rate x 1000*
 
