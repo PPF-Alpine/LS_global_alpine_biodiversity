@@ -14,7 +14,7 @@ This repo follows a template structure for R projects developed by [Ondrej Mottl
 
 ## Data availability
 
-Data to run code can be downloaded from [figshare](https://figshare.com/s/3d4dcca576f6a73668b8). Set your data storage path in the 00_Config_file to the downloaded data folder.
+To run the code download data folder from [figshare](https://figshare.com/s/3d4dcca576f6a73668b8) and set your data storage path in the 00_Config_file to the downloaded data folder.
 
 #### Raw data 
 The raw data was obtained from the following sources: 
