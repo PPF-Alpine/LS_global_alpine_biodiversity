@@ -17,22 +17,23 @@ This repo follows a template structure for R projects developed by [Ondrej Mottl
 Data to run code can be downloaded from [figshare](https://figshare.com/s/3d4dcca576f6a73668b8). Set your data storage path in the 00_Config_file to the downloaded data folder.
 
 #### Raw data 
-The raw data used for this project is not ours and therefore not included in the data folder. Raw data can be downloaded following the links below. 
-*mammal distribution data*: Mammal Diversity Database (MDD) Marsh et al., 2022; <https://onlinelibrary.wiley.com/doi/10.1111/jbi.14330>
+The raw data was obtained from the following sources: 
 
-*mammal elevation data*: Handbook of Mammals of the World. (machine readable version): <https://github.com/jhpoelen/hmw>
+*mammal distribution data*: Mammal Diversity Database (MDD) [Marsh et al., 2022](<https://onlinelibrary.wiley.com/doi/10.1111/jbi.14330>)
 
-*reptile distribution data*: global assessment reptile distribution Caetano et al., 2022 and Roll et al., 2017: <https://datadryad.org/stash/dataset/doi:10.5061/dryad.9cnp5hqmb>
+*mammal elevation data*: Handbook of Mammals of the World. [machine readable version)](<https://github.com/jhpoelen/hmw>)
 
-*reptile elevation data*: SquamBase, Meiri, 2024: <https://onlinelibrary.wiley.com/doi/10.1111/geb.13812>
+*reptile distribution data*: global assessment reptile distribution [Caetano et al., 2022 and Roll et al., 2017](<https://datadryad.org/stash/dataset/doi:10.5061/dryad.9cnp5hqmb>)
 
-*birds distribution data*: BirdLife International (after formal application): <https://www.birdlife.org/>
+*reptile elevation data*: [SquamBase, Meiri, 2024](<https://onlinelibrary.wiley.com/doi/10.1111/geb.13812>)
 
-*birds elevation data*: Quintero&Jetz, 2018: <https://www.nature.com/articles/nature25794>
+*birds distribution data*: [BirdLife International (after formal application)](<https://www.birdlife.org/>)
 
-*Plants checklists with elevation data*: Global Inventory of Floras and Traits (GIFT) database: <https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.14213> and: <https://onlinelibrary.wiley.com/doi/10.1111/jbi.13623>
+*birds elevation data*: [Quintero&Jetz, 2018](<https://www.nature.com/articles/nature25794>)
 
-*GMBA Mountain inventory*: Snethlage et. al, 2022: https://ilias.unibe.ch/goto_ilias3_unibe_cat_1000515.html 
+*Plants checklists with elevation data*: [Global Inventory of Floras and Traits (GIFT) database](https://biogeomacro.github.io/GIFT/) 
+
+*GMBA Mountain inventory*: [Snethlage et. al, 2022](https://ilias.unibe.ch/goto_ilias3_unibe_cat_1000515.html)
 
 
 ## Information on R/Folders
