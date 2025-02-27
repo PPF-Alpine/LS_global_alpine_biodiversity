@@ -16,7 +16,7 @@ source(
 
 #❗❗❗ REMOVE RESTRICTED API ❗❗❗
 
-api_rst <-"https://giftuser:Hepaticanobilis*@gift.uni-goettingen.de/api/restricted/"
+# api_rst <-""
 
 #----------------------------------------------------------#
 # 2. Get elevational ranges  -----
@@ -24,8 +24,7 @@ api_rst <-"https://giftuser:Hepaticanobilis*@gift.uni-goettingen.de/api/restrict
 
 # check out trait meta data
 # elevational ranges are stored as "traits" in GIFT
-trait_meta <- GIFT::GIFT_traits_meta(GIFT_version = "beta",
-                                     api = api_rst)
+trait_meta <- GIFT::GIFT_traits_meta(GIFT_version = "latest")
 
 # Elevational ranges
 trait_meta[which(trait_meta$Trait2 %in% c("Elevational_range_min", 
@@ -41,8 +40,7 @@ elevations_raw <- GIFT::GIFT_traits_raw(trait_IDs = c("6.1.1","6.1.2","6.1.3"),
                                         derived=TRUE,
                                         bias_ref = FALSE,
                                         bias_deriv = FALSE, 
-                                        GIFT_version = "beta",
-                                        api=api_rst)
+                                        GIFT_version = "latest")
 
 # saveRDS(elevations_raw,paste0(data_storage_path,"Biodiversity_combined/Plants/GIFT_download/GIFT_elevations_raw_download.rds"))
 

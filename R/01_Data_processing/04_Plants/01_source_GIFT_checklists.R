@@ -21,7 +21,7 @@ source(
 
 #❗❗❗ REMOVE RESTRICTED API ❗❗❗
 
-api_rst <-"https://giftuser:Hepaticanobilis*@gift.uni-goettingen.de/api/restricted/"
+# api_rst <-""
 
 
 #----------------------------------------------------------#
@@ -36,8 +36,7 @@ gift_checklists <- GIFT::GIFT_checklists(taxon_name = "Tracheophyta",
                                          complete_floristic = TRUE, 
                                          geo_type = "All", 
                                          taxonomic_group = TRUE,
-                                         GIFT_version = "beta",
-                                         api = api_rst)
+                                         GIFT_version = "latest")
 
 
 # to source only inidivual checklists run:
