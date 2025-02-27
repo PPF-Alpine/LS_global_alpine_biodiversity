@@ -28,8 +28,8 @@ checklists_elevations_filtered <- RUtilpol::get_latest_file(
 #--------------------------------------------------------------------#
 
 # get the references 
-gift_references <- GIFT::GIFT_references(api=api_rst,GIFT_version = "beta")
-gift_regions <- GIFT::GIFT_regions(api=api_rst,GIFT_version = "beta")
+gift_references <- GIFT::GIFT_references(GIFT_version = "latest")
+gift_regions <- GIFT::GIFT_regions(GIFT_version = "latest")
 
 #filter the references
 

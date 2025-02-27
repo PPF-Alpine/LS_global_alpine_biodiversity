@@ -33,12 +33,11 @@ checklists_elevations <- RUtilpol::get_latest_file(
 entity_ids <- unique(checklists_elevations$entity_ID)
 
 gift_shapes <- map(entity_ids, ~ GIFT::GIFT_shapes(entity_ID = .x, 
-                                                   GIFT_version = "beta", 
-                                                   api = api_rst))
+                                                   GIFT_version = "latest"))
 
 
 
-gift_shapes <- lapply(entity_ids, function(x) { GIFT::GIFT_shapes(entity_ID = x, GIFT_version = "beta",api=api_rst)})
+gift_shapes <- lapply(entity_ids, function(x) { GIFT::GIFT_shapes(entity_ID = x, GIFT_version = "latest")})
 
 
 gift_shapes_df <- do.call(rbind,gift_shapes)
