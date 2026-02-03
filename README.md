@@ -1,68 +1,150 @@
-# General info
+# Global Alpine Biodiversity Analysis 🏔️
 
-This repo contains all R code used to process and analyse data for the outputs of the article "Contrasting patterns of alpine biodiversity across mountains and taxa" (Schultz et. al, under review). This work has been developed for the [Past, Present and Future of Alpine Biomes Worldwide (PPF) project](https://mountainsinmotion.w.uib.no/)! 🏔🌎
+![R](https://img.shields.io/badge/R-4.3.1-276DC3?style=flat&logo=r&logoColor=white)
+![Status](https://img.shields.io/badge/status-under_review-yellow?style=flat)
+![Data](https://img.shields.io/badge/data-figshare-0066CC?style=flat&logo=figshare&logoColor=white)
+![License](https://img.shields.io/badge/license-TBD-lightgrey?style=flat)
+![Taxa](https://img.shields.io/badge/taxa-mammals%20%7C%20birds%20%7C%20reptiles%20%7C%20plants-green?style=flat)
 
-## Main structure of the Repo
+This repo contains all R code used to process and analyse data for the outputs of the article **"Contrasting patterns of alpine biodiversity across mountains and taxa"** (Schultz et. al, under review). 
 
-This repo follows a template structure for R projects developed by [Ondrej Mottl](<https://ondrejmottl.github.io/>) and [Suzette Flantua](<https://sflantua.github.io/>)
--   R / 01_Data_processing: Folder for sourcing, restructuring and joining data to create the species checklists
--   R / 02_Main_analyses: Folder where main (richness) analyses of the paper are done
--   R / 03_Figures_and_tables: Folder where figures and tables for the paper are produced
--   R / Functions: Scripts with R functions.
--   00_Config_file: file to define variables (e.g., data storage path)
--   Init_project.R: first file to run when setting up the project. Installs packages
+This work has been developed for the [Past, Present and Future of Alpine Biomes Worldwide (PPF) project](https://mountainsinmotion.w.uib.no/)! 🏔🌎
 
-## Data availability
+---
 
-To run the code download data folder from [figshare](https://figshare.com/s/3d4dcca576f6a73668b8) and set your data storage path in the 00_Config_file to the downloaded data folder.
+## 📁 Project Structure
 
-#### Raw data 
-The raw data was obtained from the following sources: 
+```
+LS_global_alpine_biodiversity/
+│
+├── 📜 ___Init_project___.R          # ← START HERE: Initial setup & package installation
+├── 📜 00_Config_file.R               # Project configuration & data paths
+│
+├── 📂 R/
+│   ├── 📂 01_Data_processing/        # Data sourcing, restructuring & validation prep
+│   │   ├── 📂 01_Mammals/            # MDD data → mountain overlap → elevation binding
+│   │   ├── 📂 02_Birds/              # BirdLife data → mountain overlap → elevation
+│   │   ├── 📂 03_Reptiles/           # GARD data → mountain overlap → elevation
+│   │   └── 📂 04_Plants/             # GIFT checklists → elevation ranges
+│   │
+│   ├── 📂 02_Main_analyses/          # Core richness & diversity analyses
+│   │   ├── 📂 01_post_validation_processing/  # Expert-validated data compilation
+│   │   ├── 📂 02_Plants/             # Alpine categorization & richness (GIFT regions)
+│   │   ├── 📂 03_Vertebrates/        # Alpine categorization & richness (mountains)
+│   │   └── 📂 Mountains/             # Lapse rates & temperature-elevation models
+│   │
+│   ├── 📂 03_Figures_and_tables/     # Manuscript visualizations & tables
+│   │   ├── 📂 Main/                  # Main text figures
+│   │   └── 📂 Supplements/           # Supplementary materials
+│   │
+│   └── 📂 Functions/                 # Custom R functions
+│       ├── calculate.overlaps.R
+│       ├── extract.elevational.ranges.R
+│       ├── lapse.rate.functions.R
+│       └── relative.absolute.richness.*.R
+│
+└── 📂 renv/                          # Package dependency management
+    └── activate.R
+```
 
-*mammal distribution data*: Mammal Diversity Database (MDD) [Marsh et al., 2022](<https://onlinelibrary.wiley.com/doi/10.1111/jbi.14330>)
+> **Template Credit:** This repo follows a template structure for R projects developed by [Ondrej Mottl](https://ondrejmottl.github.io/) and [Suzette Flantua](https://sflantua.github.io/)
 
-*mammal elevation data*: Handbook of Mammals of the World. [machine readable version)](<https://github.com/jhpoelen/hmw>)
+---
 
-*reptile distribution data*: global assessment reptile distribution [Caetano et al., 2022 and Roll et al., 2017](<https://datadryad.org/stash/dataset/doi:10.5061/dryad.9cnp5hqmb>)
+## 🚀 Getting Started
 
-*reptile elevation data*: [SquamBase, Meiri, 2024](<https://onlinelibrary.wiley.com/doi/10.1111/geb.13812>)
+1. **Run** [`___Init_project___.R`](R/___Init_project___.R) to install required packages
+2. **Download data** from [figshare](https://figshare.com/s/3d4dcca576f6a73668b8)
+3. **Configure** [`00_Config_file.R`](R/00_Config_file.R) with your data storage path
+4. **Explore** the pipeline starting from `01_Data_processing/`
 
-*birds distribution data*: [BirdLife International (after formal application)](<https://www.birdlife.org/>)
+---
 
-*birds elevation data*: [Quintero&Jetz, 2018](<https://www.nature.com/articles/nature25794>)
+## 📊 Data Sources
 
-*Plants checklists with elevation data*: [Global Inventory of Floras and Traits (GIFT) database](https://biogeomacro.github.io/GIFT/) 
+| Data Type | Source | Reference |
+|-----------|--------|-----------|
+| 🦘 **Mammal Distributions** | Mammal Diversity Database (MDD) | [Marsh et al., 2022](https://onlinelibrary.wiley.com/doi/10.1111/jbi.14330) |
+| 📈 **Mammal Elevations** | Handbook of Mammals of the World | [Machine readable version](https://github.com/jhpoelen/hmw) |
+| 🦎 **Reptile Distributions** | Global Assessment Reptile Distribution | [Caetano et al., 2022 & Roll et al., 2017](https://datadryad.org/stash/dataset/doi:10.5061/dryad.9cnp5hqmb) |
+| 📈 **Reptile Elevations** | SquamBase | [Meiri, 2024](https://onlinelibrary.wiley.com/doi/10.1111/geb.13812) |
+| 🐦 **Bird Distributions** | BirdLife International | [After formal application](https://www.birdlife.org/) |
+| 📈 **Bird Elevations** | - | [Quintero & Jetz, 2018](https://www.nature.com/articles/nature25794) |
+| 🌱 **Plant Checklists** | GIFT Database | [Global Inventory of Floras and Traits](https://biogeomacro.github.io/GIFT/) |
+| ⛰️ **Mountain Inventory** | GMBA | [Snethlage et al., 2022](https://ilias.unibe.ch/goto_ilias3_unibe_cat_1000515.html) |
 
-*GMBA Mountain inventory*: [Snethlage et. al, 2022](https://ilias.unibe.ch/goto_ilias3_unibe_cat_1000515.html)
+### Data Availability
 
+To run the code, download the data folder from [figshare](https://figshare.com/s/3d4dcca576f6a73668b8) and set your data storage path in the [`00_Config_file.R`](R/00_Config_file.R).
 
-## Information on R/Folders
-
-### Data_processing
-
-*mammals, birds and reptiles*: Here, species distribution data is sourced. Then distribution ranges are overlapped with mountain ranges. Elevational ranges are sourced from the respective literature sources and approximated using DEM. Eventually, data is reshaped to prepare for manual expert validation process.
-
-*Plants*: All plant data is sourced from the GIFT database. See detailed tutorials on how to use GIFT in R [here](<https://biogeomacro.github.io/GIFT/articles/GIFT.html>) and [here](<https://biogeomacro.github.io/GIFT/articles/GIFT_advanced_users.html>) We first sourced GIFT regions that contain alpine area and then joined elevational data for the species in these regions.
-
-GIFT checklist data includes species checklists for GIFT regions (geo_entity), elevational data and polygons that delineate GIFT regions
-
-### Main_analyses
-
-*post_validation_processing*: compile files that have been validated by experts.
-
-*Plants*: Here, we categorize plants based on their elevational ranges relative to the upper forest line within each GIFT region as alpine generalist, broad-montane species, mid-montane, UFL-alpine and alpine specialist. We then calculate absolute and relative richness for each GIFT region and the proportion of each category.
-
-*Vertebrates*: Categorize mammals, birds and reptiles based on their elevational ranges relative the upper forest line within each mountain range as alpine generalist, broad-montane species, mid-montane, UFL-alpine and alpine specialist. We then calculate absolute and relative richness for each mountain range and the proportion of each category
-
-*Mountains*: Here, we calculate the lapse rates for each mountain range and for each GIFT region as *lm(temperature \~ elevation)*. We then calculate how the temperature difference of x degree translate in elevation meteres in each mountain range and gift region as *Elevation Change = Delta Temp/Lapse rate x 1000*
-
-### Figures and tables
-
-Contains all code to reproduce figures shown in the manuscript and the supplements
-
-### Funding
-This research has been developed for the PPF-Alpine project and is funded by the [Trond Mohn Stiftelse](https://mohnfoundation.no/) and University of Bergen, Norway. 
+---
 
 
-### Contact
-If you have any questions regarding the project, this repository or the publication, please do not hesitate to contact us! E-mail: lotta.schultz@outlook.com
+## 📖 Detailed Workflow
+
+### 1️⃣ Data Processing
+
+#### Mammals, Birds & Reptiles
+
+**Pipeline:** Source Distribution Data → Overlap with Mountains → Bind Elevation Ranges → Extract DEM Elevations → Expert Validation Prep
+
+- **Mammals**: MDD data overlapped with mountain ranges, elevations from HMW & DEM
+- **Birds**: BirdLife data overlapped with mountains, elevations from Quintero & Jetz 2018
+- **Reptiles**: GARD data overlapped with mountains, elevations from SquamBase
+
+#### Plants
+
+**Pipeline:** Source GIFT Regions → Filter Alpine Areas → Join Elevational Data → Extract Polygons & References
+
+All plant data sourced from GIFT database. See detailed tutorials:
+- [GIFT R package basics](https://biogeomacro.github.io/GIFT/articles/GIFT.html)
+- [GIFT advanced users guide](https://biogeomacro.github.io/GIFT/articles/GIFT_advanced_users.html)
+
+### 2️⃣ Main Analyses
+
+#### Post-Validation Processing
+Compile and clean expert-validated species checklists for all taxa.
+
+#### Plants Analysis
+1. **Categorize species** relative to upper forest line (UFL):
+   - Alpine specialist
+   - UFL-alpine
+   - Mid-montane
+   - Broad-montane
+   - Alpine generalist
+2. **Calculate** absolute & relative richness per GIFT region
+3. **Compute** proportions of each category
+
+#### Vertebrates Analysis
+1. **Categorize species** relative to UFL (same categories as plants)
+2. **Calculate** absolute & relative richness per mountain range
+3. **Compute** proportions of each category
+
+#### Mountains Analysis
+Calculate lapse rates for each mountain range and GIFT region:
+- **Model**: `temperature ~ elevation`
+- **Conversion**: `Elevation Change = ΔTemp / Lapse Rate × 1000`
+
+### 3️⃣ Figures & Tables
+
+All visualizations and tables for the manuscript and supplementary materials.
+
+---
+
+## 💰 Funding
+
+This research has been developed for the PPF-Alpine project and is funded by the [Trond Mohn Stiftelse](https://mohnfoundation.no/) and University of Bergen, Norway.
+
+---
+
+## 📧 Contact
+
+If you have any questions regarding the project, this repository or the publication, please do not hesitate to contact us! 
+
+**Email:** lotta.schultz@outlook.com
+
+---
+
+[![PPF](https://img.shields.io/badge/PPF-Alpine_Project-4A90E2?style=for-the-badge)](https://mountainsinmotion.w.uib.no/)
+
+
