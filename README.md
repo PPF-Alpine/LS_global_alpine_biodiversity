@@ -19,21 +19,39 @@ To run the code download data folder from [figshare](https://figshare.com/s/3d4d
 #### Raw data 
 The raw data was obtained from the following sources: 
 
-*mammal distribution data*: Mammal Diversity Database (MDD) [Marsh et al., 2022](<https://onlinelibrary.wiley.com/doi/10.1111/jbi.14330>)
+#### Mammal Data
+Distribution data: Mammal Diversity Database (MDD; version 1.11; accessed May, 2023)
+Mammal Diversity Database. (2023). Mammal Diversity Database (1.11) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.7830771 
+Marsh, C. J., Sica, Y. V., Burgin, C. J., Dorman, W. A., Anderson, R. C., et al. (2022). Expert range maps of global mammal distributions harmonised to three taxonomic authorities. Journal of Biogeography, 49, 979–992. https://doi.org/10.1111/jbi.14330
+Elevation data: Elevational data were compiled from the Handbook of the Mammals of the World series (Wilson & Mittermeier, 2009–2019) using the machine-readable extraction provided by J. H. Poelen (accessed June, 2023): jhpoelen/hmw GitHub repository
 
-*mammal elevation data*: Handbook of Mammals of the World. [machine readable version)](<https://github.com/jhpoelen/hmw>)
+#### Reptile Data
+Distribution data: 
+Global Assessment of Reptile Distributions (GARD; version 1.7, accessed June, 2023)
+Roll, Uri; Meiri, Shai (2022). GARD 1.7 - updated global distributions for all terrestrial reptiles [Dataset]. Dryad. https://doi.org/10.5061/dryad.9cnp5hqmb 
+Roll, U., Feldman, A., Novosolov, M., Allison, A., Bauer, A. M., Bernard, R., Böhm, M., Castro-Herrera, F., Chirio, L., Collen, B., Colli, G. R., et al. (2017). The global distribution of tetrapods reveals a need for targeted reptile conservation. Nature Ecology & Evolution, 1, 1677–1682. https://doi.org/10.1038/s41559-017-0332-2 
+de Oliveira Caetano, G. H., et al. (2022). Automated assessment reveals that the extinction risk of reptiles is widely underestimated across space and phylogeny. PLOS Biology, 20(5), e3001544. https://doi.org/10.1371/journal.pbio.3001544 
+Elevation data: 
+SquamBase (version 1.0, accessed June, 2023 (provided by S. Meiri prior to publication and accessed June 2023); Meiri, 2024)
+Meiri, Shai (2024). SquamBase 1.0 – a dataset of squamate species traits [Dataset]. Dryad. https://doi.org/10.5061/dryad.76hdr7t3b 
+Meiri, S. (2024). SquamBase—A database of squamate (Reptilia: Squamata) traits. Global Ecology and Biogeography, 33(4), e13812. https://doi.org/10.1111/geb.13812 
 
-*reptile distribution data*: global assessment reptile distribution [Caetano et al., 2022 and Roll et al., 2017](<https://datadryad.org/stash/dataset/doi:10.5061/dryad.9cnp5hqmb>)
+#### Bird Data
+Distribution data: 
+BirdLife International Data Zone (version 2022.2, accessed May 2023)
+BirdLife International and Handbook of the Birds of the World (2022) Bird species distribution maps of the world. Version 2022.2. Available at http://datazone.birdlife.org/species/requestdis.
 
-*reptile elevation data*: [SquamBase, Meiri, 2024](<https://onlinelibrary.wiley.com/doi/10.1111/geb.13812>)
+Elevation data: Quintero, I., Jetz, W. Global elevational diversity and diversification of birds. Nature 555, 246–250 (2018). https://doi.org/10.1038/nature25794 (Supplementary Table 1 version of record, 2018, accessed June 2023)
 
-*birds distribution data*: [BirdLife International (after formal application)](<https://www.birdlife.org/>)
+#### Plant Data
+Regional plant checklists: Global Inventory of Floras and Traits (GIFT) database (version 3.0, access provided by P. Denelle prior to publication and accessed April 2023)
+Weigelt, P., König, C. & Kreft, H. (2020) GIFT - A Global Inventory of Floras and Traits for macroecology and biogeography. Journal of Biogeography, 47, 16-43. DOI: 10.1111/jbi.13623 
 
-*birds elevation data*: [Quintero&Jetz, 2018](<https://www.nature.com/articles/nature25794>)
+#### Mountain Data
+Mountain inventory: GMBA Mountain Inventory (version 2, accessed April 2023)
+Snethlage, M.A., Geschke, J., Spehn, E.M., Ranipeta, A., Yoccoz, N.G., Körner, Ch., Jetz, W., Fischer, M. & Urbach, D. (2022). A hierarchical inventory of the world’s mountains for global comparative mountain science. Nature Scientific Data. https://doi.org/10.1038/s41597-022-01256-y 
+Snethlage, M.A., Geschke, J., Spehn, E.M., Ranipeta, A., Yoccoz, N.G., Körner, Ch., Jetz, W., Fischer, M. & Urbach, D. (2022) GMBA Mountain Inventory v2. GMBA-EarthEnv. https://doi.org/10.48601/earthenv-t9k2-1407
 
-*Plants checklists with elevation data*: [Global Inventory of Floras and Traits (GIFT) database](https://biogeomacro.github.io/GIFT/) 
-
-*GMBA Mountain inventory*: [Snethlage et. al, 2022](https://ilias.unibe.ch/goto_ilias3_unibe_cat_1000515.html)
 
 
 ## Information on R/Folders
